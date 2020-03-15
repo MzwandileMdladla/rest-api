@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author mzwandile on 2020/03/15
@@ -28,7 +29,7 @@ public class TopicController {
     }
 
     @GetMapping("/topics/{id}")
-    public Topic getTopic(@PathVariable String id) {
+    public Optional<Topic> getTopic(@PathVariable String id) {
         return topicService.getTopic(id);
     }
 
@@ -39,8 +40,8 @@ public class TopicController {
     }
 
     @DeleteMapping("/topics/{id}")
-    public Topic deleteTopic(@PathVariable String id) {
-        Topic deletedTopic = topicService.getTopic(id);
+    public Optional<Topic> deleteTopic(@PathVariable String id) {
+        Optional<Topic> deletedTopic = topicService.getTopic(id);
         topicService.deleteTopic(id);
         return deletedTopic;
     }
