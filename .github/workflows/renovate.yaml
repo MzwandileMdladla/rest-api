@@ -8,21 +8,21 @@ jobs:
   renovate:
     runs-on: ubuntu-latest
     steps:
-      - - name: Checkout
+        - name: Checkout
           uses: actions/checkout@v3.3.0
         - name: Self-hosted Renovate
           uses: renovatebot/github-action@v34.82.0
           with:
             configurationFile: .github/renovate.json
             token: ${{ secrets.RENOVATE_TOKEN }}
-#      - name: Renovate
-#        uses: docker://renovate/renovate:32.241.7-slim
-#        env:
-#          DRY_RUN: ${{ github.event_name == 'pull_request' && true || false }}
-#          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-#          RENOVATE_BINARY_SOURCE: install
-#          LOG_LEVEL: debug
-#        with:
-#          args: MzwandileMdladla/rest-api --dry-run=${{ env.DRY_RUN }} --onboarding=false
+        - name: Renovate
+          uses: docker://renovate/renovate:32.241.7-slim
+          env:
+          DRY_RUN: ${{ github.event_name == 'pull_request' && true || false }}
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          RENOVATE_BINARY_SOURCE: install
+          LOG_LEVEL: debug
+          with:
+            args: MzwandileMdladla/rest-api --dry-run=${{ env.DRY_RUN }} --onboarding=false
 
 
