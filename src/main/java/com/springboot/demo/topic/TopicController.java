@@ -1,13 +1,7 @@
 package com.springboot.demo.topic;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,35 +12,36 @@ import java.util.Optional;
  */
 
 @RestController
+@RequestMapping("api/v1/topics")
 public class TopicController {
 
     @Autowired
     private TopicService topicService;
 
-    @GetMapping("/topics")
+    @GetMapping
     public List<Topic> getTopics() {
         return topicService.getTopics();
     }
 
-    @GetMapping("/topics/{id}")
+    @GetMapping("{id}")
     public Optional<Topic> getTopic(@PathVariable String id) {
         return topicService.getTopic(id);
     }
 
-    @PostMapping("/topics")
+    @PostMapping
     public Topic addTopic(@RequestBody Topic topic) {
         topicService.addTopic(topic);
         return topic;
     }
 
-    @DeleteMapping("/topics/{id}")
+    @DeleteMapping("{id}")
     public Optional<Topic> deleteTopic(@PathVariable String id) {
         Optional<Topic> deletedTopic = topicService.getTopic(id);
         topicService.deleteTopic(id);
         return deletedTopic;
     }
 
-    @PutMapping("/topics/{id}")
+    @PutMapping("{id}")
     public void updateTopic(@PathVariable String id, @RequestBody Topic topic) {
         topicService.updateTopic(id, topic);
     }
