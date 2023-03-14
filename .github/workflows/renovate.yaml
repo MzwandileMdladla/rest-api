@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Renovate
-        uses: docker://renovate/renovate:32.241.7-slim
+        uses: docker://renovate/renovate:35.4.0-slim
         env:
           DRY_RUN: ${{ github.event_name == 'pull_request' && true || false }}
 #          HTTPS_PROXY: http://proxy.ctonetwrkprod.aws.dsarena.com:3128
